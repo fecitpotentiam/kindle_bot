@@ -1,0 +1,24 @@
+[0;1;32m●[0m postgresql.service - PostgreSQL database server
+     Loaded: loaded (/usr/lib/systemd/system/postgresql.service; disabled; vendor preset: disabled)
+     Active: [0;1;32mactive (running)[0m since Fri 2020-12-18 13:27:47 +05; 7s ago
+    Process: 14355 ExecStartPre=/usr/bin/postgresql-check-db-dir ${PGROOT}/data (code=exited, status=0/SUCCESS)
+   Main PID: 14357 (postgres)
+      Tasks: 7 (limit: 19121)
+     Memory: 16.6M
+     CGroup: /system.slice/postgresql.service
+             ├─14357 /usr/bin/postgres -D /var/lib/postgres/data
+             ├─14359 postgres: checkpointer
+             ├─14360 postgres: background writer
+             ├─14361 postgres: walwriter
+             ├─14362 postgres: autovacuum launcher
+             ├─14363 postgres: stats collector
+             └─14364 postgres: logical replication launcher
+
+дек 18 13:27:47 oksana-systemproductname systemd[1]: Starting PostgreSQL database server...
+дек 18 13:27:47 oksana-systemproductname postgres[14357]: 2020-12-18 13:27:47.129 +05 [14357] СООБЩЕНИЕ:  запускается PostgreSQL 12.5 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 10.2.0, 64-bit
+дек 18 13:27:47 oksana-systemproductname postgres[14357]: 2020-12-18 13:27:47.129 +05 [14357] СООБЩЕНИЕ:  для приёма подключений по адресу IPv6 "::1" открыт порт 5432
+дек 18 13:27:47 oksana-systemproductname postgres[14357]: 2020-12-18 13:27:47.129 +05 [14357] СООБЩЕНИЕ:  для приёма подключений по адресу IPv4 "127.0.0.1" открыт порт 5432
+дек 18 13:27:47 oksana-systemproductname postgres[14357]: 2020-12-18 13:27:47.131 +05 [14357] СООБЩЕНИЕ:  для приёма подключений открыт Unix-сокет "/run/postgresql/.s.PGSQL.5432"
+дек 18 13:27:47 oksana-systemproductname postgres[14358]: 2020-12-18 13:27:47.158 +05 [14358] СООБЩЕНИЕ:  система БД была выключена: 2020-12-18 13:27:24 +05
+дек 18 13:27:47 oksana-systemproductname postgres[14357]: 2020-12-18 13:27:47.163 +05 [14357] СООБЩЕНИЕ:  система БД готова принимать подключения
+дек 18 13:27:47 oksana-systemproductname systemd[1]: Started PostgreSQL database server.
