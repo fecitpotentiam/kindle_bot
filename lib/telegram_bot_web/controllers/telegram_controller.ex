@@ -40,6 +40,7 @@ defmodule TelegramBotWeb.TelegramController do
   def redirect_document_by_mail(document) do
     {file_name, old_file_name} = handle_document(document)
     :ok = TelegramBot.Email.send_file(file_name)
+    :ok = add_to_trello(document["file_name"])
     delete_documents(file_name, old_file_name)
     file_name
   end
@@ -110,6 +111,26 @@ defmodule TelegramBotWeb.TelegramController do
     |> halt
   end
 
+  @doc """
+  Добавляет карточку с названием книги в список Trello
+  """
+  def add_to_trello(file_name) do
+    book_name = String.replace(file_name, ".mobi", "")
+    book_name = String.replace(book_name, ".pdf", "")
+
+    params = %{
+      "key" => System.get_env("TRELLO_API_KEY"),
+      "token" => System.get_env("TRELLO_API_TOKEN"),
+      "idList" => System.get_env("TRELLO_LIST_ID"),
+      "name" => book_name
+    } |> URI.encode_query
+
+    {:ok, resp = HTTPoison.post(
+      "https://api.trello.com/1/cards",
+      params,
+      %{"Content-Type" => "application/x-www-form-urlencoded"})}
+    :ok
+  end
 
   def to_text(file_name) do
     System.cmd("pdftotext", ["data/" <> file_name])
