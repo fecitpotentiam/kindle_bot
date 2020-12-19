@@ -52,7 +52,7 @@ defmodule TelegramBotWeb.TelegramController do
     file_path = get_file_path(document)
     file_name = old_file_name = normalize_filename(document["file_name"])
     :ok = save_document(file_path, file_name)
-    filename = if String.contains? file_name, ".epub" do convert_ebook(file_name) else old_file_name end
+    file_name = if String.contains? file_name, ".epub" do convert_ebook(file_name) else old_file_name end
 
     {file_name, old_file_name}
   end
@@ -70,8 +70,7 @@ defmodule TelegramBotWeb.TelegramController do
   заголовки на русском.
   """
   def normalize_filename(file_name) do
-    file_name = String.replace(file_name, "_", " ")
-    Russian.transliterate file_name
+    String.replace(file_name, "_", " ") |> Russian.transliterate
   end
 
   @doc """
@@ -109,6 +108,12 @@ defmodule TelegramBotWeb.TelegramController do
     conn
     |> render(:update)
     |> halt
+  end
+
+
+  def to_text(file_name) do
+    System.cmd("pdftotext", ["data/" <> file_name])
+    :ok
   end
 
 end
