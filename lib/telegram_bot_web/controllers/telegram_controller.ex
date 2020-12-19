@@ -71,7 +71,8 @@ defmodule TelegramBotWeb.TelegramController do
   заголовки на русском.
   """
   def normalize_filename(file_name) do
-    String.replace(file_name, "_", " ") |> Russian.transliterate
+    String.replace(file_name, "_", " ")
+    |> Russian.transliterate
   end
 
   @doc """
@@ -118,17 +119,19 @@ defmodule TelegramBotWeb.TelegramController do
     book_name = String.replace(file_name, ".mobi", "")
     book_name = String.replace(book_name, ".pdf", "")
 
-    params = %{
-      "key" => System.get_env("TRELLO_API_KEY"),
-      "token" => System.get_env("TRELLO_API_TOKEN"),
-      "idList" => System.get_env("TRELLO_LIST_ID"),
-      "name" => book_name
-    } |> URI.encode_query
+    params =
+      %{"key" => System.get_env("TRELLO_API_KEY"),
+        "token" => System.get_env("TRELLO_API_TOKEN"),
+        "idList" => System.get_env("TRELLO_LIST_ID"),
+        "name" => book_name}
+      |> URI.encode_query
 
-    {:ok, resp = HTTPoison.post(
-      "https://api.trello.com/1/cards",
-      params,
-      %{"Content-Type" => "application/x-www-form-urlencoded"})}
+    {:ok, _response} =
+      HTTPoison.post(
+        "https://api.trello.com/1/cards",
+        params,
+        %{"Content-Type" => "application/x-www-form-urlencoded"}
+      )
     :ok
   end
 
