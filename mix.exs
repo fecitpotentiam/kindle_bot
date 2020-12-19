@@ -20,7 +20,7 @@ defmodule TelegramBot.MixProject do
   def application do
     [
       mod: {TelegramBot.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :bamboo]
     ]
   end
 
@@ -44,7 +44,13 @@ defmodule TelegramBot.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:nadia, "~> 0.6.0"},
+      {:httpoison, "~> 1.6.2"},
+      {:gen_smtp, "~> 0.15.0"},
+      {:bamboo, "~> 1.6.0"},
+      {:bamboo_smtp, "~> 2.1.0"},
+      {:russian, "~> 0.1.0"}
     ]
   end
 

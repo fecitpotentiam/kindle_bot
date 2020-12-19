@@ -10,6 +10,18 @@ use Mix.Config
 config :telegram_bot,
   ecto_repos: [TelegramBot.Repo]
 
+config :telegram_bot, TelegramBot.Mailer,
+  adapter: Bamboo.SMTPAdapter,
+  server: "smtp.yandex.ru",
+  port: 465,
+  username: {:system, "SMTP_USERNAME"},
+  password: {:system, "SMTP_PASSWORD"},
+  tls: :if_available, # can be `:always` or `:never`
+  ssl: true, # can be `true`
+  retries: 1,
+  allowed_tls_versions: [:"tlsv1", :"tlsv1.1", :"tlsv1.2"],
+  auth: :always
+
 # Configures the endpoint
 config :telegram_bot, TelegramBotWeb.Endpoint,
   url: [host: "localhost"],
@@ -25,6 +37,9 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+config :nadia,
+  token: {:system, "TELEGRAM_BOT_KEY"}
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

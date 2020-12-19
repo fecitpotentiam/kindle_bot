@@ -13,10 +13,26 @@ defmodule TelegramBotWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :telegram do
+    plug :accepts, ["json"]
+    plug TelegramBot.BotToken
+    plug Plug.Parsers,
+         parsers: [:urlencoded, :json],
+         json_decoder: {Jason, :decode!, [[keys: :atoms]]},
+         pass: ["*/*"]
+  end
+
+  scope "/webhook/:bot_token", TelegramBotWeb do
+    pipe_through :telegram
+
+    post "/", TelegramController, :update
+  end
+
   scope "/", TelegramBotWeb do
-    pipe_through :browser
+    pipe_through :telegram
 
     get "/", PageController, :index
+    post "/", TelegramController, :update
   end
 
   # Other scopes may use custom stacks.

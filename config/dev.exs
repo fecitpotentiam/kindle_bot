@@ -17,6 +17,7 @@ config :telegram_bot, TelegramBot.Repo,
 # with webpack to recompile .js and .css sources.
 config :telegram_bot, TelegramBotWeb.Endpoint,
   http: [port: 4000],
+  https: [port: 443, keyfile: "priv/keys/server.key", certfile: "priv/keys/server.crt"],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
@@ -74,3 +75,5 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+

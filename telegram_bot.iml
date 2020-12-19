@@ -7,6 +7,9 @@
       <sourceFolder url="file://$MODULE_DIR$/lib" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/bamboo" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/bamboo_smtp" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/certifi" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/connection" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/cowboy" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/cowboy_telemetry" />
@@ -16,9 +19,17 @@
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ecto" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ecto_sql" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/file_system" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/gen_smtp" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/gettext" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/hackney" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/httpoison" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/idna" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/jason" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/metrics" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/mime" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/mimerl" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/nadia" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/parse_trans" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/phoenix" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/phoenix_ecto" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/phoenix_html" />
@@ -31,15 +42,18 @@
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/plug_crypto" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/postgrex" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ranch" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ssl_verify_fun" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/telemetry" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/telemetry_metrics" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/telemetry_poller" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/unicode_util_compat" />
       <excludeFolder url="file://$MODULE_DIR$/assets/node_modules/phoenix" />
       <excludeFolder url="file://$MODULE_DIR$/assets/node_modules/phoenix_html" />
       <excludeFolder url="file://$MODULE_DIR$/cover" />
       <excludeFolder url="file://$MODULE_DIR$/deps" />
       <excludeFolder url="file://$MODULE_DIR$/doc" />
       <excludeFolder url="file://$MODULE_DIR$/logs" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/russian" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="phoenix" level="project" />
@@ -82,5 +96,21 @@
     <orderEntry type="library" name="x509" level="project" />
     <orderEntry type="library" name="mime" level="project" />
     <orderEntry type="library" name="html_entities" level="project" />
+    <orderEntry type="library" name="nadya" level="project" />
+    <orderEntry type="library" name="nadia" level="project" />
+    <orderEntry type="library" name="httpoison" level="project" />
+    <orderEntry type="library" name="exvcr" level="project" />
+    <orderEntry type="library" name="earmark" level="project" />
+    <orderEntry type="library" name="mimic" level="project" />
+    <orderEntry type="library" name="exjsx" level="project" />
+    <orderEntry type="library" name="httparrot" level="project" />
+    <orderEntry type="library" name="bamboo" level="project" />
+    <orderEntry type="library" name="bamboo_smtp" level="project" />
+    <orderEntry type="library" name="ex_machina" level="project" />
+    <orderEntry type="library" name="gen_smtp" level="project" />
+    <orderEntry type="library" name="credo" level="project" />
+    <orderEntry type="library" name="mailer" level="project" />
+    <orderEntry type="library" name="russian" level="project" />
+    <orderEntry type="library" name="ex_spec" level="project" />
   </component>
 </module>
