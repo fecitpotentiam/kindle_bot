@@ -37,7 +37,7 @@ defmodule TelegramBotWeb.TelegramController do
   Обрабатывает и перенаправляет входящий документ на указанный адрес электронной почты,
   удаляет после отправки
   """
-  def redirect_document_by_mail(document) do
+  defp redirect_document_by_mail(document) do
     {file_name, old_file_name} = handle_document(document)
     :ok = TelegramBot.Email.send_file(file_name)
     :ok = add_to_trello(document["file_name"])
@@ -49,7 +49,7 @@ defmodule TelegramBotWeb.TelegramController do
   Обрабатывает входящий документ - приводит название документа к единой форме, сохраняет его и конвертирует
   (в случае с форматом epub).
   """
-  def handle_document(document) do
+  defp handle_document(document) do
     file_path = get_file_path(document)
     file_name = old_file_name = normalize_filename(document["file_name"])
     :ok = save_document(file_path, file_name)
@@ -61,7 +61,7 @@ defmodule TelegramBotWeb.TelegramController do
   @doc """
   Получает ссылку на скачивание документа.
   """
-  def get_file_path(document) do
+  defp get_file_path(document) do
     {:ok, file} = Nadia.get_file(document["file_id"])
     file.file_path
   end
@@ -70,7 +70,7 @@ defmodule TelegramBotWeb.TelegramController do
   Приводит имя документа к единой форме, удаляет лишние знаки препинания и транслитерирует
   заголовки на русском.
   """
-  def normalize_filename(file_name) do
+  defp normalize_filename(file_name) do
     String.replace(file_name, "_", " ")
     |> Russian.transliterate
   end
@@ -78,7 +78,7 @@ defmodule TelegramBotWeb.TelegramController do
   @doc """
   Скачивает документ по ссылке и сохраняет его.
   """
-  def save_document(file_path, file_name) do
+  defp save_document(file_path, file_name) do
     url = "https://api.telegram.org/file/bot" <> Nadia.Config.token() <> "/" <> file_path
     %HTTPoison.Response{body: body} = HTTPoison.get!(url)
     File.write!("data/" <> file_name, body)
@@ -88,7 +88,7 @@ defmodule TelegramBotWeb.TelegramController do
   @doc """
   Конвертирует epub в mobi с помощью calibre
   """
-  def convert_ebook(file_name) do
+  defp convert_ebook(file_name) do
       converted_filename = String.replace(file_name, ".epub", ".mobi")
       System.cmd("ebook-convert", ["data/" <> file_name, "data/" <> converted_filename])
       converted_filename
@@ -97,7 +97,7 @@ defmodule TelegramBotWeb.TelegramController do
   @doc """
   Удаляет документы после отправки.
   """
-  def delete_documents(file_name, old_file_name) do
+  defp delete_documents(file_name, old_file_name) do
     File.rm("data/" <> file_name)
     File.rm("data/" <> old_file_name)
     :ok
@@ -106,7 +106,7 @@ defmodule TelegramBotWeb.TelegramController do
   @doc """
   Отправляет ответ, что обработка сообщения прошла успешно.
   """
-  def send_response(conn) do
+  defp send_response(conn) do
     conn
     |> render(:update)
     |> halt
@@ -115,7 +115,7 @@ defmodule TelegramBotWeb.TelegramController do
   @doc """
   Добавляет карточку с названием книги в список Trello
   """
-  def add_to_trello(file_name) do
+  defp add_to_trello(file_name) do
     book_name = String.replace(file_name, ".mobi", "")
     book_name = String.replace(book_name, ".pdf", "")
 
@@ -135,7 +135,7 @@ defmodule TelegramBotWeb.TelegramController do
     :ok
   end
 
-  def to_text(file_name) do
+  defp to_text(file_name) do
     System.cmd("pdftotext", ["data/" <> file_name])
     :ok
   end
